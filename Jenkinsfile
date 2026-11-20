@@ -31,12 +31,12 @@ pipeline {
                 bat '''
                     docker rm -f monapp_test 2>nul || ver > nul
 
-                    docker run -d --name monapp_test -p 8082:80 %IMAGE%:%TAG%
+                    docker run -d --name monapp_test -p 8083:80 %IMAGE%:%TAG%
                     if errorlevel 1 exit /b 1
 
                     ping -n 3 127.0.0.1 > nul
 
-                    curl -f -I http://localhost:8082
+                    curl -f -I http://localhost:8083
 
                     if errorlevel 1 (
                         docker rm -f monapp_test
